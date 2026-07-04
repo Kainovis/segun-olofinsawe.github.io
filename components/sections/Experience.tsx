@@ -30,7 +30,7 @@ function TimelineItem({
         initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
         animate={inView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className={`p-6 rounded-2xl bg-white dark:bg-[#0d1829] border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md card-glow transition-all ${
+        className={`p-6 rounded-2xl bg-[#0d1f3c] border border-[#1a56ff]/15 shadow-sm hover:shadow-md card-glow transition-all ${
           isLeft ? "md:text-right" : "md:text-left"
         } mb-4 md:mb-0`}
       >
@@ -57,10 +57,10 @@ function TimelineItem({
           )}
         </div>
 
-        <h3 className="font-bold text-lg text-[#0A2540] dark:text-white mb-1">
+        <h3 className="font-bold text-lg text-white mb-1">
           {experience.company}
         </h3>
-        <p className="text-[#0057D9] dark:text-blue-400 font-medium text-sm mb-4">
+        <p className="text-[#1a56ff] font-medium text-sm mb-4">
           {experience.role}
         </p>
 
@@ -74,7 +74,7 @@ function TimelineItem({
                 isLeft ? "md:flex-row-reverse" : ""
               }`}
             >
-              <CheckCircle2 className="w-4 h-4 text-[#0057D9] flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-[#1a56ff] flex-shrink-0 mt-0.5" />
               <span>{item}</span>
             </li>
           ))}
@@ -104,11 +104,11 @@ function TimelineItem({
           transition={{ duration: 0.4, delay: 0.2 }}
           className={`w-4 h-4 rounded-full border-2 flex-shrink-0 mt-6 z-10 ${
             experience.current
-              ? "border-[#0057D9] bg-[#0057D9] shadow-lg shadow-blue-500/40"
-              : "border-[#0057D9] bg-white dark:bg-[#060d1a]"
+              ? "border-[#1a56ff] bg-[#1a56ff] shadow-lg shadow-blue-500/40"
+              : "border-[#1a56ff] bg-[#060e1f]"
           }`}
         />
-        <div className="flex-1 w-0.5 bg-gradient-to-b from-[#0057D9]/50 to-transparent" />
+        <div className="flex-1 w-0.5 bg-gradient-to-b from-[#1a56ff]/50 to-transparent" />
       </div>
 
       {/* Empty cell for alternating layout */}
@@ -121,7 +121,7 @@ export function ExperienceSection() {
   return (
     <SectionWrapper
       id="experience"
-      className="bg-slate-50 dark:bg-[#080f1e] px-4 sm:px-6 lg:px-8"
+      className="bg-[#0a1628] px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-5xl mx-auto">
         <SectionHeader
@@ -137,7 +137,7 @@ export function ExperienceSection() {
 
         <div className="relative">
           {/* Center timeline line on desktop */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#0057D9]/30 via-[#0078D4]/20 to-transparent -translate-x-1/2" />
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#1a56ff]/30 via-[#1a56ff]/15 to-transparent -translate-x-1/2" />
 
           <div className="space-y-8">
             {EXPERIENCES.map((exp, i) => (

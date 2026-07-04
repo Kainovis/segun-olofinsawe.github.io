@@ -34,7 +34,7 @@ export function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/80 dark:bg-[#060d1a]/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm"
+          ? "bg-[#060e1f]/90 backdrop-blur-xl border-b border-[#1a56ff]/10 shadow-sm"
           : "bg-transparent"
       )}
     >
@@ -43,7 +43,7 @@ export function Header() {
           {/* Logo */}
           <a
             href="#"
-            className="flex items-center gap-2 font-bold text-xl text-[#0A2540] dark:text-white"
+            className="flex items-center gap-2 font-bold text-xl text-white"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -61,7 +61,7 @@ export function Header() {
               <button
                 key={item.href}
                 onClick={() => handleNavClick(item.href)}
-                className="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#0057D9] dark:hover:text-blue-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-all"
+                className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-[#1a56ff] rounded-lg hover:bg-[#1a56ff]/10 transition-all"
               >
                 {item.label}
               </button>
@@ -74,7 +74,7 @@ export function Header() {
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label="Toggle theme"
-                className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-all"
+                className="p-2 rounded-lg text-slate-300 hover:bg-[#1a56ff]/10 transition-all"
               >
                 {theme === "dark" ? (
                   <Sun className="w-4 h-4" />
@@ -85,13 +85,13 @@ export function Header() {
             )}
             <button
               onClick={() => handleNavClick("#contact")}
-              className="hidden md:inline-flex items-center px-4 py-2 bg-[#0057D9] hover:bg-[#0046b5] text-white text-sm font-medium rounded-lg transition-all"
+              className="hidden md:inline-flex items-center px-4 py-2 bg-[#1a56ff] hover:bg-[#1446e0] text-white text-sm font-medium rounded-lg transition-all"
             >
               Hire Me
             </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/50"
+              className="md:hidden p-2 rounded-lg text-slate-300 hover:bg-[#1a56ff]/10"
               aria-label="Toggle menu"
             >
               {mobileOpen ? (
@@ -112,21 +112,21 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-white/95 dark:bg-[#060d1a]/95 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50"
+            className="md:hidden bg-[#060e1f]/95 backdrop-blur-xl border-b border-[#1a56ff]/10"
           >
             <div className="px-4 py-4 space-y-1">
               {NAV_ITEMS.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className="block w-full text-left px-4 py-3 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#0057D9] dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg transition-all"
+                  className="block w-full text-left px-4 py-3 text-sm font-medium text-slate-300 hover:text-[#1a56ff] hover:bg-[#1a56ff]/10 rounded-lg transition-all"
                 >
                   {item.label}
                 </button>
               ))}
               <button
                 onClick={() => handleNavClick("#contact")}
-                className="block w-full text-center px-4 py-3 bg-[#0057D9] hover:bg-[#0046b5] text-white text-sm font-medium rounded-lg transition-all mt-2"
+                className="block w-full text-center px-4 py-3 bg-[#1a56ff] hover:bg-[#1446e0] text-white text-sm font-medium rounded-lg transition-all mt-2"
               >
                 Hire Me
               </button>

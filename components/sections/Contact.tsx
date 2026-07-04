@@ -77,7 +77,7 @@ export function ContactSection() {
   return (
     <SectionWrapper
       id="contact"
-      className="bg-slate-50 dark:bg-[#080f1e] px-4 sm:px-6 lg:px-8"
+      className="bg-[#0a1628] px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <SectionHeader
@@ -100,9 +100,9 @@ export function ContactSection() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+              <p className="text-slate-300 text-lg leading-relaxed">
               Whether you&apos;re looking to{" "}
-              <span className="font-semibold text-[#0057D9] dark:text-blue-400">
+                  <span className="font-semibold text-[#1a56ff]">
                 hire a senior engineer
               </span>
               , collaborate on an enterprise project, or discuss cloud
@@ -120,7 +120,7 @@ export function ContactSection() {
                   className="flex items-center gap-4"
                 >
                   <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-5 h-5 text-[#0057D9] dark:text-blue-400" />
+                    <item.icon className="w-5 h-5 text-[#1a56ff]" />
                   </div>
                   <div>
                     <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">
@@ -133,12 +133,12 @@ export function ContactSection() {
                           item.href.startsWith("http") ? "_blank" : undefined
                         }
                         rel="noopener noreferrer"
-                        className="font-medium text-[#0A2540] dark:text-white hover:text-[#0057D9] dark:hover:text-blue-400 transition-colors"
+                        className="font-medium text-white hover:text-[#1a56ff] transition-colors"
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <p className="font-medium text-[#0A2540] dark:text-white">
+                      <p className="font-medium text-white">
                         {item.value}
                       </p>
                     )}
@@ -183,11 +183,11 @@ export function ContactSection() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="p-8 rounded-2xl bg-white dark:bg-[#0d1829] border border-slate-200 dark:border-slate-800 shadow-sm space-y-5"
+                className="p-8 rounded-2xl bg-[#0d1f3c] border border-[#1a56ff]/15 shadow-sm space-y-5"
               >
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                    <label className="block text-sm font-medium text-slate-300 mb-1.5">
                       Full Name
                     </label>
                     <input
@@ -198,11 +198,11 @@ export function ContactSection() {
                         setForm({ ...form, name: e.target.value })
                       }
                       placeholder="John Doe"
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-[#0A2540] dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0057D9] transition-all"
+                      className="w-full px-4 py-2.5 rounded-xl border border-[#1a56ff]/20 bg-[#060e1f] text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a56ff] transition-all"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                    <label className="block text-sm font-medium text-slate-300 mb-1.5">
                       Email Address
                     </label>
                     <input
@@ -213,12 +213,12 @@ export function ContactSection() {
                         setForm({ ...form, email: e.target.value })
                       }
                       placeholder="john@company.com"
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-[#0A2540] dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0057D9] transition-all"
+                      className="w-full px-4 py-2.5 rounded-xl border border-[#1a56ff]/20 bg-[#060e1f] text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a56ff] transition-all"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                  <label className="block text-sm font-medium text-slate-300 mb-1.5">
                     Subject
                   </label>
                   <input
@@ -229,11 +229,11 @@ export function ContactSection() {
                       setForm({ ...form, subject: e.target.value })
                     }
                     placeholder="Project Enquiry / Hiring / Collaboration"
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-[#0A2540] dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0057D9] transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#1a56ff]/20 bg-[#060e1f] text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a56ff] transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                  <label className="block text-sm font-medium text-slate-300 mb-1.5">
                     Message
                   </label>
                   <textarea
@@ -244,13 +244,13 @@ export function ContactSection() {
                       setForm({ ...form, message: e.target.value })
                     }
                     placeholder="Tell me about your project or opportunity..."
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-[#0A2540] dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0057D9] transition-all resize-none"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#1a56ff]/20 bg-[#060e1f] text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a56ff] transition-all resize-none"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#0057D9] hover:bg-[#0046b5] disabled:opacity-60 text-white font-semibold rounded-xl transition-all hover:scale-[1.02]"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#1a56ff] hover:bg-[#1446e0] disabled:opacity-60 text-white font-semibold rounded-xl transition-all hover:scale-[1.02]"
                 >
                   {submitting ? (
                     <>

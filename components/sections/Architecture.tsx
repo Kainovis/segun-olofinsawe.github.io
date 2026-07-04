@@ -75,7 +75,7 @@ export function ArchitectureSection() {
   return (
     <SectionWrapper
       id="architecture"
-      className="bg-white dark:bg-[#060d1a] px-4 sm:px-6 lg:px-8"
+      className="bg-[#060e1f] px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <SectionHeader
@@ -98,7 +98,7 @@ export function ArchitectureSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -4 }}
-              className="group p-6 rounded-2xl bg-slate-50 dark:bg-[#0d1829] border border-slate-200 dark:border-slate-800 hover:shadow-lg hover:shadow-blue-500/10 card-glow transition-all"
+              className="group p-6 rounded-2xl bg-[#0d1f3c] border border-[#1a56ff]/15 hover:shadow-lg hover:shadow-[#1a56ff]/10 card-glow transition-all"
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
@@ -110,10 +110,10 @@ export function ArchitectureSection() {
                 />
               </div>
 
-              <h3 className="font-bold text-[#0A2540] dark:text-white text-lg mb-3">
+              <h3 className="font-bold text-white text-lg mb-3">
                 {card.title}
               </h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5">
+              <p className="text-slate-400 text-sm leading-relaxed mb-5">
                 {card.description}
               </p>
 

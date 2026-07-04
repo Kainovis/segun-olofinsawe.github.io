@@ -27,7 +27,7 @@ export function DevOpsSection() {
   return (
     <SectionWrapper
       id="devops"
-      className="bg-slate-50 dark:bg-[#080f1e] px-4 sm:px-6 lg:px-8"
+      className="bg-[#0a1628] px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <SectionHeader
@@ -55,12 +55,12 @@ export function DevOpsSection() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.12 }}
                   whileHover={{ y: -4 }}
-                  className="flex flex-col items-center p-4 rounded-xl bg-white dark:bg-[#0d1829] border border-slate-200 dark:border-slate-800 min-w-[90px] shadow-sm hover:shadow-md transition-all"
+                  className="flex flex-col items-center p-4 rounded-xl bg-[#0d1f3c] border border-[#1a56ff]/15 min-w-[90px] shadow-sm hover:shadow-md transition-all"
                 >
-                  <div className="p-2.5 rounded-lg bg-blue-50 dark:bg-blue-900/20 mb-2">
-                    <stage.icon className="w-5 h-5 text-[#0057D9] dark:text-blue-400" />
+                  <div className="p-2.5 rounded-lg bg-[#1a56ff]/15 mb-2">
+                    <stage.icon className="w-5 h-5 text-[#38bdf8]" />
                   </div>
-                  <p className="font-semibold text-xs text-[#0A2540] dark:text-white">
+                  <p className="font-semibold text-xs text-white">
                     {stage.label}
                   </p>
                   <p className="text-[10px] text-slate-400 text-center mt-0.5">
@@ -93,7 +93,7 @@ export function DevOpsSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
               whileHover={{ y: -4, scale: 1.03 }}
-              className="flex flex-col items-center p-5 rounded-2xl bg-white dark:bg-[#0d1829] border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md card-glow transition-all"
+                  className="flex flex-col items-center p-5 rounded-2xl bg-[#0d1f3c] border border-[#1a56ff]/15 shadow-sm hover:shadow-md card-glow transition-all"
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-3"
@@ -104,7 +104,7 @@ export function DevOpsSection() {
                   style={{ color: tool.color }}
                 />
               </div>
-              <p className="font-bold text-sm text-[#0A2540] dark:text-white text-center">
+              <p className="font-bold text-sm text-white text-center">
                 {tool.name}
               </p>
               <p className="text-[11px] text-slate-400 text-center mt-1">

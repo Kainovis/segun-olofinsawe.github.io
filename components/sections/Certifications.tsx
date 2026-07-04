@@ -10,7 +10,7 @@ export function CertificationsSection() {
   return (
     <SectionWrapper
       id="certifications"
-      className="bg-white dark:bg-[#060d1a] px-4 sm:px-6 lg:px-8"
+      className="bg-[#060e1f] px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <SectionHeader
@@ -33,7 +33,7 @@ export function CertificationsSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.15 }}
               whileHover={{ y: -6 }}
-              className="group relative p-6 rounded-2xl bg-white dark:bg-[#0d1829] border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 overflow-hidden card-glow transition-all"
+              className="group relative p-6 rounded-2xl bg-[#0d1f3c] border border-[#1a56ff]/15 shadow-sm hover:shadow-xl hover:shadow-[#1a56ff]/10 overflow-hidden card-glow transition-all"
             >
               {/* Background gradient */}
               <div
@@ -80,13 +80,13 @@ export function CertificationsSection() {
                   </span>
                 </div>
 
-                <h3 className="font-bold text-lg text-[#0A2540] dark:text-white mb-2">
+                <h3 className="font-bold text-lg text-white mb-2">
                   {cert.title}
                 </h3>
                 <p className="text-xs font-medium text-slate-400 uppercase tracking-wide mb-3">
                   {cert.issuer}
                 </p>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5">
+                <p className="text-sm text-slate-400 leading-relaxed mb-5">
                   {cert.description}
                 </p>
 

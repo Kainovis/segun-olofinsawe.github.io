@@ -2,28 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Download, FolderOpen, Mail, ChevronRight } from "lucide-react";
+import { Download, FolderOpen, Mail, ArrowDown } from "lucide-react";
 
-const CODE_SNIPPETS = [
-  `public class MerchantService : IMerchantService {`,
-  `  private readonly IMediator _mediator;`,
-  `  public async Task<Result> OnboardAsync(`,
-  `    OnboardMerchantCommand cmd) {`,
-  `    return await _mediator.Send(cmd);`,
-  `  }`,
-  `}`,
-  `[ApiController, Route("api/[controller]")]`,
-  `public class PaymentController : ControllerBase {`,
-  `var builder = WebApplication.CreateBuilder(args);`,
-  `builder.Services.AddMediatR(cfg => cfg`,
-  `  .RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));`,
-  `services.AddDbContext<AppDbContext>(opts =>`,
-  `  opts.UseSqlServer(connectionString));`,
-  `public record CreateMerchantCommand(`,
-  `  string Name, string BusinessType`,
-  `) : IRequest<Result<MerchantDto>>;`,
-];
-
+/* ── Particle network canvas ───────────────────────────────── */
 function ParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -33,72 +14,53 @@ function ParticleCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let width = (canvas.width = canvas.offsetWidth);
-    let height = (canvas.height = canvas.offsetHeight);
+    let W = (canvas.width = canvas.offsetWidth);
+    let H = (canvas.height = canvas.offsetHeight);
 
-    const particles: {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      r: number;
-      alpha: number;
-    }[] = [];
+    const pts = Array.from({ length: 60 }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 2 + 0.5,
+    }));
 
-    for (let i = 0; i < 80; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 2 + 0.5,
-        alpha: Math.random() * 0.5 + 0.1,
-      });
-    }
-
-    let animId: number;
-    function draw() {
-      ctx!.clearRect(0, 0, width, height);
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx!.beginPath();
-        ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx!.fillStyle = `rgba(0,120,212,${p.alpha})`;
-        ctx!.fill();
+    let raf: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+      for (const p of pts) {
+        p.x = (p.x + p.vx + W) % W;
+        p.y = (p.y + p.vy + H) % H;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(26,86,255,0.5)";
+        ctx.fill();
       }
-      // Draw connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            ctx!.beginPath();
-            ctx!.moveTo(particles[i].x, particles[i].y);
-            ctx!.lineTo(particles[j].x, particles[j].y);
-            ctx!.strokeStyle = `rgba(0,87,217,${0.08 * (1 - dist / 100)})`;
-            ctx!.lineWidth = 0.5;
-            ctx!.stroke();
+      for (let i = 0; i < pts.length; i++)
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x,
+            dy = pts[i].y - pts[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 110) {
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.strokeStyle = `rgba(26,86,255,${0.12 * (1 - d / 110)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
           }
         }
-      }
-      animId = requestAnimationFrame(draw);
-    }
+      raf = requestAnimationFrame(draw);
+    };
     draw();
 
     const onResize = () => {
-      width = canvas.width = canvas.offsetWidth;
-      height = canvas.height = canvas.offsetHeight;
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
     };
     window.addEventListener("resize", onResize);
     return () => {
-      cancelAnimationFrame(animId);
+      cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
     };
   }, []);
@@ -106,208 +68,276 @@ function ParticleCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ pointerEvents: "none" }}
+      className="absolute inset-0 w-full h-full pointer-events-none"
     />
   );
 }
 
-const ROLES = [
-  "Senior Software Engineer",
-  "Software Architect",
-  ".NET | Azure | Cloud Native",
+/* ── Tech icons data ───────────────────────────────────────── */
+const TECH_ICONS = [
+  { label: "C#", bg: "#6B21A8", letter: "C#" },
+  { label: ".NET", bg: "#512BD4", letter: ".N" },
+  { label: "Azure", bg: "#0078D4", letter: "Az" },
+  { label: "Docker", bg: "#2496ED", letter: "Do" },
+  { label: "K8s", bg: "#326CE5", letter: "K8" },
+  { label: "SQL", bg: "#CC2927", letter: "SQL" },
 ];
 
+/* ── Main Hero Section ─────────────────────────────────────── */
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#060d1a]">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 animated-gradient opacity-80" />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#060e1f]">
+      {/* Dotted grid */}
+      <div className="absolute inset-0 dot-pattern opacity-40" />
 
-      {/* Radial glow */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#0057D9]/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[300px] bg-[#0078D4]/10 rounded-full blur-3xl" />
-      </div>
+      {/* Dark navy overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#060e1f] via-[#0a1628]/90 to-[#0d1f3c]/70" />
 
-      {/* Network particles */}
+      {/* Particle network */}
       <ParticleCanvas />
 
-      {/* Floating geometric shapes */}
-      {[...Array(6)].map((_, i) => (
+      {/* Diagonal chevron shapes — right side (desktop only) */}
+      <div className="absolute right-0 top-0 bottom-0 w-[55%] overflow-hidden pointer-events-none hidden lg:block">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(135deg, transparent 30%, #0f2552 30%, #1a3a6b 60%, rgba(26,86,255,0.13) 100%)",
+          }}
+        />
+        <div
+          className="absolute top-0 right-0 bottom-0 w-full"
+          style={{
+            background:
+              "linear-gradient(140deg, transparent 38%, rgba(26,86,255,0.08) 38%, rgba(26,86,255,0.12) 55%, transparent 55%)",
+          }}
+        />
+        <div
+          className="absolute top-0 right-0 bottom-0 w-full"
+          style={{
+            background:
+              "linear-gradient(140deg, transparent 50%, rgba(26,86,255,0.05) 50%, rgba(26,86,255,0.09) 65%, transparent 65%)",
+          }}
+        />
+
+        {/* City skyline SVG */}
+        <svg
+          className="absolute bottom-0 right-0 w-full opacity-20"
+          viewBox="0 0 700 280"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMaxYMax meet"
+        >
+          <rect x="0" y="180" width="40" height="100" fill="#38bdf8" />
+          <rect x="15" y="140" width="20" height="40" fill="#38bdf8" />
+          <rect x="45" y="160" width="55" height="120" fill="#38bdf8" />
+          <rect x="70" y="120" width="12" height="40" fill="#38bdf8" />
+          <rect x="105" y="100" width="60" height="180" fill="#38bdf8" />
+          <rect x="128" y="80" width="15" height="20" fill="#38bdf8" />
+          <rect x="170" y="150" width="45" height="130" fill="#38bdf8" />
+          <rect x="220" y="90" width="70" height="190" fill="#38bdf8" />
+          <rect x="245" y="60" width="18" height="30" fill="#38bdf8" />
+          <rect x="295" y="130" width="50" height="150" fill="#38bdf8" />
+          <rect x="350" y="80" width="80" height="200" fill="#38bdf8" />
+          <rect x="385" y="50" width="10" height="30" fill="#38bdf8" />
+          <rect x="435" y="120" width="55" height="160" fill="#38bdf8" />
+          <rect x="495" y="100" width="65" height="180" fill="#38bdf8" />
+          <rect x="520" y="70" width="14" height="30" fill="#38bdf8" />
+          <rect x="565" y="140" width="50" height="140" fill="#38bdf8" />
+          <rect x="620" y="110" width="80" height="170" fill="#38bdf8" />
+        </svg>
+
+        {/* Dotted grid top-right */}
+        <div className="absolute top-8 right-12 grid grid-cols-6 gap-2.5 opacity-50">
+          {Array.from({ length: 30 }).map((_, i) => (
+            <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
+          ))}
+        </div>
+
+        {/* Dotted grid bottom-right */}
+        <div className="absolute bottom-12 right-8 grid grid-cols-5 gap-2.5 opacity-30">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#1a56ff]" />
+          ))}
+        </div>
+      </div>
+
+      {/* Floating rings */}
+      {[200, 320, 450].map((size, i) => (
         <motion.div
           key={i}
-          className="absolute border border-blue-500/10 rounded-full"
-          style={{
-            width: `${80 + i * 40}px`,
-            height: `${80 + i * 40}px`,
-            top: `${10 + i * 12}%`,
-            left: `${5 + i * 15}%`,
-          }}
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.05, 1],
-          }}
+          className="absolute left-[18%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#1a56ff]/10 pointer-events-none hidden md:block"
+          style={{ width: size, height: size }}
+          animate={{ rotate: 360 }}
           transition={{
-            rotate: {
-              duration: 20 + i * 5,
-              repeat: Infinity,
-              ease: "linear",
-            },
-            scale: {
-              duration: 4 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
+            duration: 30 + i * 8,
+            repeat: Infinity,
+            ease: "linear",
           }}
         />
       ))}
 
-      {/* Floating code snippets */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-        {CODE_SNIPPETS.slice(0, 6).map((snippet, i) => (
-          <motion.div
-            key={i}
-            className="absolute code-snippet text-blue-300 whitespace-nowrap font-mono text-xs"
-            style={{
-              top: `${8 + i * 14}%`,
-              right: `${2 + (i % 3) * 5}%`,
-              opacity: 0.08,
-            }}
-            animate={{ y: [0, -15, 0] }}
-            transition={{
-              duration: 8 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.5,
-            }}
-          >
-            {snippet}
-          </motion.div>
-        ))}
-      </div>
+      {/* ── Main content ── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-24 pb-20">
+        <div className="max-w-xl lg:max-w-2xl">
 
-      {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
-        <div className="max-w-4xl">
+          {/* Available badge */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1a56ff]/10 border border-[#1a56ff]/25 text-blue-300 text-xs font-medium mb-8"
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 border border-blue-500/20 text-blue-300 mb-6">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Available for opportunities
-            </span>
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            Available for opportunities
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight mb-4"
-          >
-            Segun
-            <br />
-            <span className="gradient-text">Olofinsawe</span>
-          </motion.h1>
+          <div className="flex gap-6">
+            {/* Left accent line */}
+            <div
+              className="hidden sm:block w-1 rounded-full bg-gradient-to-b from-[#1a56ff] to-transparent flex-shrink-0 mt-2"
+              style={{ height: "220px" }}
+            />
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="flex flex-col gap-1 mb-8"
-          >
-            {ROLES.map((role, i) => (
-              <div key={i} className="flex items-center gap-3">
-                {i < ROLES.length - 1 ? (
-                  <ChevronRight className="w-4 h-4 text-[#0078D4] flex-shrink-0" />
-                ) : (
-                  <span className="w-4 h-4 flex items-center justify-center flex-shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0078D4]" />
+            <div>
+              {/* Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.1 }}
+                className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight tracking-tight mb-4"
+              >
+                Building{" "}
+                <span className="gradient-text">Scalable.</span>
+                <br />
+                <span className="gradient-text">Secure.</span> Impactful
+                <br />
+                <span className="text-white">Solutions.</span>
+              </motion.h1>
+
+              {/* Sub-tagline */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="flex items-center gap-3 text-slate-400 text-sm font-medium mb-8"
+              >
+                {["Architect", "Build", "Deploy", "Scale"].map((w, i) => (
+                  <span key={w} className="flex items-center gap-3">
+                    {w}
+                    {i < 3 && (
+                      <span className="w-1 h-1 rounded-full bg-[#1a56ff]" />
+                    )}
                   </span>
-                )}
-                <span
-                  className={
-                    i === 0
-                      ? "text-xl sm:text-2xl font-semibold text-white"
-                      : i === 1
-                      ? "text-lg sm:text-xl font-medium text-slate-300"
-                      : "text-base sm:text-lg font-mono text-[#0078D4]"
+                ))}
+              </motion.div>
+
+              {/* Name & title */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mb-8"
+              >
+                <p className="text-2xl font-bold text-white">
+                  Segun Olofinsawe
+                </p>
+                <p className="text-[#1a56ff] font-medium mt-1">
+                  Senior Software Engineer &amp; Architect
+                </p>
+                <p className="text-slate-400 text-sm mt-2 leading-relaxed max-w-md">
+                  Designing and building secure, cloud-native enterprise
+                  software that powers digital banking and financial platforms
+                  across Africa.
+                </p>
+              </motion.div>
+
+              {/* CTA buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="flex flex-wrap gap-3 mb-10"
+              >
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a56ff] hover:bg-[#1446e0] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-[#1a56ff]/30"
+                >
+                  <Download className="w-4 h-4" /> Download Resume
+                </a>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("projects")
+                      ?.scrollIntoView({ behavior: "smooth" })
                   }
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/[0.08] hover:bg-white/[0.12] text-white text-sm font-semibold rounded-lg border border-white/[0.12] transition-all"
                 >
-                  {role}
-                </span>
-              </div>
-            ))}
-          </motion.div>
+                  <FolderOpen className="w-4 h-4" /> View Projects
+                </button>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("contact")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-transparent hover:bg-white/5 text-slate-300 text-sm font-semibold rounded-lg border border-slate-700 transition-all"
+                >
+                  <Mail className="w-4 h-4" /> Contact Me
+                </button>
+              </motion.div>
+            </div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg sm:text-xl text-slate-400 max-w-2xl leading-relaxed mb-10"
-          >
-            I design and build{" "}
-            <span className="text-white font-medium">
-              secure, scalable, cloud-native enterprise software
-            </span>{" "}
-            that powers digital banking and financial platforms.
-          </motion.p>
-
+          {/* Tech icons row */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap gap-3"
+            transition={{ delay: 0.6 }}
           >
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0057D9] hover:bg-[#0046b5] text-white font-semibold rounded-xl transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
-            >
-              <Download className="w-4 h-4" />
-              Download Resume
-            </a>
-            <button
-              onClick={() => {
-                const el = document.getElementById("projects");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 text-white font-semibold rounded-xl border border-white/10 transition-all hover:scale-105"
-            >
-              <FolderOpen className="w-4 h-4" />
-              View Projects
-            </button>
-            <button
-              onClick={() => {
-                const el = document.getElementById("contact");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-transparent hover:bg-white/5 text-slate-300 font-semibold rounded-xl border border-slate-700 transition-all hover:scale-105"
-            >
-              <Mail className="w-4 h-4" />
-              Contact Me
-            </button>
-          </motion.div>
-
-          {/* Tech pills */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="flex flex-wrap gap-2 mt-10"
-          >
-            {[".NET 8", "C#", "Azure", "SQL Server", "CQRS", "DDD", "Microservices", "Docker"].map(
-              (tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 rounded-full text-xs font-medium bg-slate-800/80 text-slate-300 border border-slate-700/50"
+            <div className="flex flex-wrap gap-3 mb-6">
+              {TECH_ICONS.map((t, i) => (
+                <motion.div
+                  key={t.label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.65 + i * 0.07 }}
+                  whileHover={{ y: -4, scale: 1.08 }}
+                  className="flex flex-col items-center gap-1.5"
                 >
-                  {tech}
-                </span>
-              )
-            )}
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                    style={{
+                      backgroundColor: t.bg,
+                      boxShadow: `0 4px 15px ${t.bg}55`,
+                    }}
+                  >
+                    {t.letter}
+                  </div>
+                  <span className="text-[11px] text-slate-400 font-medium">
+                    {t.label}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Feature pills */}
+            <div className="flex flex-wrap gap-2">
+              {[
+                { icon: "⬡", label: "Software Architecture" },
+                { icon: "</>", label: "Clean Code · Better Systems" },
+                { icon: "☁", label: "Cloud Native Solutions" },
+              ].map((pill) => (
+                <div
+                  key={pill.label}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[#1a56ff]/20 bg-[#1a56ff]/5 text-slate-300 text-xs font-medium"
+                >
+                  <span className="text-[#38bdf8]">{pill.icon}</span>
+                  {pill.label}
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
@@ -317,11 +347,11 @@ export function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-slate-600"
       >
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
+        <span className="text-[10px] tracking-widest uppercase">Scroll</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 7, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
           <ArrowDown className="w-4 h-4" />

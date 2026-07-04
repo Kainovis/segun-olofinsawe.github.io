@@ -20,7 +20,7 @@ export function ProjectsSection() {
   return (
     <SectionWrapper
       id="projects"
-      className="bg-white dark:bg-[#060d1a] px-4 sm:px-6 lg:px-8"
+      className="bg-[#060e1f] px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <SectionHeader
@@ -43,7 +43,7 @@ export function ProjectsSection() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -6 }}
-              className="group relative flex flex-col p-6 rounded-2xl bg-white dark:bg-[#0d1829] border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 card-glow transition-all overflow-hidden"
+              className="group relative flex flex-col p-6 rounded-2xl bg-[#0d1f3c] border border-[#1a56ff]/15 shadow-sm hover:shadow-xl hover:shadow-[#1a56ff]/15 card-glow transition-all overflow-hidden"
             >
               {/* Hover gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
@@ -77,15 +77,15 @@ export function ProjectsSection() {
               </div>
 
               {/* Architecture icon */}
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0057D9] to-[#0078D4] flex items-center justify-center mb-4 flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1a56ff] to-[#0078D4] flex items-center justify-center mb-4 flex-shrink-0">
                 <Boxes className="w-5 h-5 text-white" />
               </div>
 
               {/* Content */}
-              <h3 className="font-bold text-lg text-[#0A2540] dark:text-white mb-2 leading-tight">
+              <h3 className="font-bold text-lg text-white mb-2 leading-tight">
                 {project.title}
               </h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 flex-1">
+              <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-1">
                 {project.longDescription}
               </p>
 
@@ -99,7 +99,7 @@ export function ProjectsSection() {
                     {project.architectureHighlights.map((h) => (
                       <span
                         key={h}
-                        className="px-2 py-0.5 rounded-md text-xs bg-blue-50 dark:bg-blue-900/20 text-[#0057D9] dark:text-blue-400 font-medium"
+                        className="px-2 py-0.5 rounded-md text-xs bg-[#1a56ff]/10 text-[#38bdf8] font-medium"
                       >
                         {h}
                       </span>

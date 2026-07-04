@@ -27,7 +27,7 @@ export function AboutSection() {
   return (
     <SectionWrapper
       id="about"
-      className="bg-white dark:bg-[#060d1a] px-4 sm:px-6 lg:px-8"
+      className="bg-[#060e1f] px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <SectionHeader
@@ -53,7 +53,7 @@ export function AboutSection() {
             <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
               I&apos;m a Senior Software Engineer and Architect with deep
               expertise in building{" "}
-              <span className="font-semibold text-[#0057D9] dark:text-blue-400">
+              <span className="font-semibold text-[#1a56ff]">
                 cloud-native enterprise applications
               </span>{" "}
               for the banking and fintech sector.
@@ -100,7 +100,7 @@ export function AboutSection() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-xs font-medium rounded-full bg-blue-50 dark:bg-blue-900/20 text-[#0057D9] dark:text-blue-300 border border-blue-100 dark:border-blue-800/30"
+                  className="px-3 py-1 text-xs font-medium rounded-full bg-[#1a56ff]/10 text-[#38bdf8] border border-[#1a56ff]/20"
                 >
                   {tag}
                 </span>
@@ -125,15 +125,15 @@ export function AboutSection() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.4 }}
-                  className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-center"
+                  className="p-6 rounded-2xl bg-[#0d1f3c]/60 border border-[#1a56ff]/10 text-center"
                 >
-                  <div className="text-4xl font-black text-[#0057D9] dark:text-blue-400 mb-1">
+                  <div className="text-4xl font-black text-[#1a56ff] mb-1">
                     <AnimatedCounter
                       target={stat.value}
                       suffix={stat.suffix}
                     />
                   </div>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
+                  <p className="text-sm text-slate-400 font-medium">
                     {stat.label}
                   </p>
                 </motion.div>
@@ -150,13 +150,13 @@ export function AboutSection() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + i * 0.08 }}
                   whileHover={{ y: -2 }}
-                  className="flex items-start gap-3 p-4 rounded-xl bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 card-glow transition-all"
+                  className="flex items-start gap-3 p-4 rounded-xl bg-[#0d1f3c]/50 border border-[#1a56ff]/10 card-glow transition-all"
                 >
                   <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex-shrink-0">
-                    <spec.icon className="w-4 h-4 text-[#0057D9] dark:text-blue-400" />
+                      <spec.icon className="w-4 h-4 text-[#1a56ff]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-sm text-[#0A2540] dark:text-white">
+                    <p className="font-semibold text-sm text-white">
                       {spec.label}
                     </p>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
