@@ -32,13 +32,6 @@ export function AboutSection() {
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="About Me"
-          title={
-            <>
-              Building the Future of{" "}
-              <span className="gradient-text">Digital Finance</span>
-            </>
-          }
-          description="With over 6 years of experience, I architect and deliver enterprise-grade software that drives financial innovation across Africa."
         />
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -51,37 +44,23 @@ export function AboutSection() {
             className="space-y-6"
           >
             <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
-              I&apos;m a Senior Software Engineer and Architect with deep
-              expertise in building{" "}
-              <span className="font-semibold text-[#1a56ff]">
-                cloud-native enterprise applications
-              </span>{" "}
-              for the banking and fintech sector.
+              I&apos;m a{" "}
+              <span className="font-semibold text-[#1a56ff]">Senior Software Engineer and Software Architect</span>{" "}
+              with extensive experience designing and building secure, scalable, cloud-native enterprise applications for the banking, fintech, and SaaS industries. My expertise spans the entire software development lifecycle—from requirements analysis and solution architecture to implementation, deployment, and continuous optimization.
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              My work spans the full engineering lifecycle — from requirements
-              analysis and system design through to implementation, deployment,
-              and ongoing optimization. I specialize in{" "}
-              <span className="font-medium text-[#0A2540] dark:text-white">
-                .NET, C#, ASP.NET Core
-              </span>
-              , with a strong command of cloud infrastructure on{" "}
-              <span className="font-medium text-[#0A2540] dark:text-white">
-                Microsoft Azure
-              </span>
-              .
+              I specialize in{" "}
+              <span className="font-medium text-[#0A2540] dark:text-white">C#, .NET, ASP.NET Core, and Microsoft Azure</span>
+              , with a strong focus on designing resilient systems using{" "}
+              <span className="font-medium text-[#0A2540] dark:text-white">Domain-Driven Design (DDD), CQRS, Clean Architecture, Microservices, and event-driven architectures</span>
+              . Beyond enterprise banking solutions, I have built{" "}
+              <span className="font-medium text-[#0A2540] dark:text-white">SaaS platforms</span>
+              , including a collaborative form-building solution similar to Notion, and developed{" "}
+              <span className="font-medium text-[#0A2540] dark:text-white">workflow and business process automation tools</span>{" "}
+              that streamline operations and improve productivity.
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              I design systems using proven architectural patterns including{" "}
-              <span className="font-medium text-[#0A2540] dark:text-white">
-                Domain-Driven Design (DDD), CQRS, Clean Architecture,
-              </span>{" "}
-              and{" "}
-              <span className="font-medium text-[#0A2540] dark:text-white">
-                Microservices
-              </span>
-              , ensuring solutions are maintainable, scalable, and resilient
-              under enterprise load.
+              I&apos;m passionate about delivering high-quality software, driving architectural excellence, and leveraging modern DevOps and cloud-native practices to build systems that are maintainable, scalable, and ready for enterprise growth.
             </p>
 
             {/* Tags */}

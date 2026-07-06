@@ -14,6 +14,8 @@ const CATEGORY_COLORS: Record<string, string> = {
   Treasury: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200/50 dark:border-amber-800/30",
   Compliance: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-200/50 dark:border-red-800/30",
   "Agency Banking": "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-200/50 dark:border-cyan-800/30",
+  "SaaS": "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-200/50 dark:border-violet-800/30",
+  "Automation": "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-200/50 dark:border-orange-800/30",
 };
 
 export function ProjectsSection() {

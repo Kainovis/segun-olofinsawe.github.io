@@ -8,10 +8,8 @@ import type {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "About", href: "#about" },
-  { label: "Tech Stack", href: "#tech-stack" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Architecture", href: "#architecture" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -81,6 +79,17 @@ export const TECH_CATEGORIES: TechCategory[] = [
 export const PROJECTS: Project[] = [
   {
     id: 1,
+    title: "Agency Banking Platform",
+    description: "Agent onboarding, settlement, and POS integration.",
+    longDescription:
+      "A full-featured agency banking solution managing agent lifecycle from onboarding through daily operations, including POS device management, transaction processing, settlement automation, and performance dashboards.",
+    technologies: [".NET Core", "SQL Server", "Azure Service Bus", "Docker", "Kubernetes"],
+    category: "Agency Banking",
+    featured: true,
+    architectureHighlights: ["Microservices", "CQRS", "POS Integration", "Auto-Settlement"],
+  },
+  {
+    id: 2,
     title: "Merchant Onboarding Platform",
     description:
       "Enterprise banking onboarding system supporting merchants nationwide.",
@@ -92,7 +101,7 @@ export const PROJECTS: Project[] = [
     architectureHighlights: ["CQRS", "DDD", "Clean Architecture", "Azure Service Bus"],
   },
   {
-    id: 2,
+    id: 3,
     title: "PAPSS Integration",
     description:
       "Pan-African Payment and Settlement System — cross-border payment platform.",
@@ -104,7 +113,7 @@ export const PROJECTS: Project[] = [
     architectureHighlights: ["Microservices", "Event-Driven", "API Gateway", "Idempotency"],
   },
   {
-    id: 3,
+    id: 4,
     title: "User Access Management",
     description: "Role-based access control platform for enterprise banking.",
     longDescription:
@@ -115,7 +124,7 @@ export const PROJECTS: Project[] = [
     architectureHighlights: ["RBAC", "JWT", "Audit Logging", "Multi-tenant"],
   },
   {
-    id: 4,
+    id: 5,
     title: "Treasury Portal",
     description:
       "Rate management, concessions, and approval workflow system.",
@@ -127,7 +136,7 @@ export const PROJECTS: Project[] = [
     architectureHighlights: ["Real-time", "Workflow Engine", "Event Sourcing"],
   },
   {
-    id: 5,
+    id: 6,
     title: "Fraud Reporting Portal",
     description: "Fraud investigation, audit, and reporting platform.",
     longDescription:
@@ -138,15 +147,26 @@ export const PROJECTS: Project[] = [
     architectureHighlights: ["Event-Driven", "Audit Trail", "Real-time Alerts"],
   },
   {
-    id: 6,
-    title: "Agency Banking Platform",
-    description: "Agent onboarding, settlement, and POS integration.",
+    id: 7,
+    title: "Enterprise Form Builder Platform",
+    description: "Collaborative SaaS platform for dynamic form design and workflow management.",
     longDescription:
-      "A full-featured agency banking solution managing agent lifecycle from onboarding through daily operations, including POS device management, transaction processing, settlement automation, and performance dashboards.",
-    technologies: [".NET Core", "SQL Server", "Azure Service Bus", "Docker", "Kubernetes"],
-    category: "Agency Banking",
+      "A collaborative SaaS platform that enables organizations to design, customize, and manage dynamic forms with configurable workflows, real-time collaboration, role-based access control, and seamless third-party integrations for efficient data collection and business process management.",
+    technologies: [".NET Core", "SQL Server", "REST APIs", "SignalR"],
+    category: "SaaS",
     featured: true,
-    architectureHighlights: ["Microservices", "CQRS", "POS Integration", "Auto-Settlement"],
+    architectureHighlights: ["SaaS", "Multi-Tenant", "Dynamic Form Engine", "RBAC", "Real-time Collaboration"],
+  },
+  {
+    id: 8,
+    title: "Workflow & Business Process Automation Platform",
+    description: "Enterprise automation platform for configurable low-code workflow orchestration.",
+    longDescription:
+      "An enterprise automation platform that streamlines business operations by enabling organizations to automate workflows, approvals, notifications, task orchestration, and business processes through configurable, low-code automation pipelines and system integrations.",
+    technologies: [".NET Core", "SQL Server", "Azure Service Bus", "REST APIs"],
+    category: "Automation",
+    featured: true,
+    architectureHighlights: ["Workflow Engine", "BPA", "Microservices", "Event-Driven Architecture"],
   },
 ];
 
@@ -242,7 +262,7 @@ export const STATS = [
 ];
 
 export const SOCIAL_LINKS = {
-  email: "sawesis1234@gmail.com",
+  email: "segun.olofinsawe@outlook.com",
   phone: "+2348136713116",
   linkedin: "https://www.linkedin.com/in/segun-olofinsawe",
   github: "https://github.com/segun-olofinsawe",

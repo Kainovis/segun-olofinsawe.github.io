@@ -179,14 +179,17 @@ export function HeroSection() {
 
       {/* ── Main content ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-24 pb-20">
-        <div className="max-w-xl lg:max-w-2xl">
+        <div className="flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-10">
+
+          {/* ── Left: text column ── */}
+          <div className="flex-1 min-w-0">
 
           {/* Available badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1a56ff]/10 border border-[#1a56ff]/25 text-blue-300 text-xs font-medium mb-8"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1a56ff]/10 border border-[#1a56ff]/25 text-blue-300 text-xs font-medium mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             Available for opportunities
@@ -200,52 +203,20 @@ export function HeroSection() {
             />
 
             <div>
-              {/* Headline */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.65, delay: 0.1 }}
-                className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight tracking-tight mb-4"
-              >
-                Building{" "}
-                <span className="gradient-text">Scalable.</span>
-                <br />
-                <span className="gradient-text">Secure.</span> Impactful
-                <br />
-                <span className="text-white">Solutions.</span>
-              </motion.h1>
-
-              {/* Sub-tagline */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="flex items-center gap-3 text-slate-400 text-sm font-medium mb-8"
-              >
-                {["Architect", "Build", "Deploy", "Scale"].map((w, i) => (
-                  <span key={w} className="flex items-center gap-3">
-                    {w}
-                    {i < 3 && (
-                      <span className="w-1 h-1 rounded-full bg-[#1a56ff]" />
-                    )}
-                  </span>
-                ))}
-              </motion.div>
-
               {/* Name & title */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mb-8"
+                className="mb-6"
               >
-                <p className="text-2xl font-bold text-white">
+                <p className="text-3xl sm:text-4xl font-black text-white tracking-tight">
                   Segun Olofinsawe
                 </p>
-                <p className="text-[#1a56ff] font-medium mt-1">
+                <p className="text-[#1a56ff] font-semibold mt-1 text-base">
                   Senior Software Engineer &amp; Architect
                 </p>
-                <p className="text-slate-400 text-sm mt-2 leading-relaxed max-w-md">
+                <p className="text-slate-400 text-sm mt-3 leading-relaxed max-w-md">
                   Designing and building secure, cloud-native enterprise
                   software that powers digital banking and financial platforms
                   across Africa.
@@ -257,7 +228,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="flex flex-wrap gap-3 mb-10"
+                className="flex flex-wrap gap-3 mb-8"
               >
                 <a
                   href="/resume.pdf"
@@ -288,7 +259,7 @@ export function HeroSection() {
                 </button>
               </motion.div>
             </div>
-          </div>
+          </div>{/* end flex gap-6 */}
 
           {/* Tech icons row */}
           <motion.div
@@ -296,7 +267,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <div className="flex flex-wrap gap-3 mb-6">
+            <div className="flex flex-wrap gap-4 mb-5">
               {TECH_ICONS.map((t, i) => (
                 <motion.div
                   key={t.label}
@@ -307,10 +278,10 @@ export function HeroSection() {
                   className="flex flex-col items-center gap-1.5"
                 >
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold text-sm shadow-lg"
                     style={{
                       backgroundColor: t.bg,
-                      boxShadow: `0 4px 15px ${t.bg}55`,
+                      boxShadow: `0 4px 20px ${t.bg}66`,
                     }}
                   >
                     {t.letter}
@@ -331,7 +302,7 @@ export function HeroSection() {
               ].map((pill) => (
                 <div
                   key={pill.label}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[#1a56ff]/20 bg-[#1a56ff]/5 text-slate-300 text-xs font-medium"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#1a56ff]/20 bg-[#1a56ff]/5 text-slate-300 text-xs font-medium"
                 >
                   <span className="text-[#38bdf8]">{pill.icon}</span>
                   {pill.label}
@@ -339,7 +310,47 @@ export function HeroSection() {
               ))}
             </div>
           </motion.div>
-        </div>
+          </div>{/* end left column */}
+
+          {/* ── Right: profile photo ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="flex-shrink-0 flex items-center justify-center"
+          >
+            <div className="relative">
+              {/* Outer glow */}
+              <div className="absolute inset-0 rounded-3xl bg-[#1a56ff]/30 blur-3xl scale-105 pointer-events-none" />
+              {/* Blue accent shape behind image */}
+              <div className="absolute -top-4 -right-4 w-full h-full rounded-3xl bg-gradient-to-br from-[#1a56ff]/40 to-[#38bdf8]/20 pointer-events-none" />
+              {/* Image with fade-to-dark bottom */}
+              <div className="relative overflow-hidden rounded-3xl" style={{ width: "320px", height: "420px" }}>
+                <img
+                  src="/segun.jpg"
+                  alt="Segun Olofinsawe"
+                  className="w-full h-full object-cover object-top"
+                />
+                {/* Bottom fade blend */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#060e1f] via-transparent to-transparent" />
+                {/* Subtle left fade blend */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#060e1f]/30 via-transparent to-transparent" />
+              </div>
+              {/* Floating badge */}
+              <div className="absolute -bottom-4 -left-5 px-4 py-2.5 rounded-xl bg-[#0a1628]/90 backdrop-blur-sm border border-[#1a56ff]/30 shadow-xl">
+                <p className="text-[11px] text-slate-400 font-medium">Senior Engineer</p>
+                <p className="text-sm text-white font-bold">10+ yrs experience</p>
+              </div>
+              {/* Top-right dots accent */}
+              <div className="absolute -top-3 -right-3 grid grid-cols-3 gap-1.5">
+                {Array.from({ length: 9 }).map((_, i) => (
+                  <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#1a56ff]/50" />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+        </div>{/* end flex row */}
       </div>
 
       {/* Scroll indicator */}
