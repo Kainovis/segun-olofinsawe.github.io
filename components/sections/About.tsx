@@ -21,6 +21,7 @@ const SPECIALIZATIONS = [
   { icon: Database, label: "Data", desc: "SQL Server, PostgreSQL, Redis" },
   { icon: Shield, label: "Security", desc: "IAM, RBAC, Compliance" },
   { icon: Landmark, label: "Fintech", desc: "Banking & payment platforms" },
+  { icon: Cloud, label: "SaaS", desc: "Scalable multi-tenant platforms" },
 ];
 
 export function AboutSection() {
@@ -32,6 +33,7 @@ export function AboutSection() {
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="About Me"
+          title=""
         />
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">

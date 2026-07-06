@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Download, FolderOpen, Mail, ArrowDown } from "lucide-react";
+import { FolderOpen, Mail, ArrowDown } from "lucide-react";
 
 /* ── Particle network canvas ───────────────────────────────── */
 function ParticleCanvas() {
@@ -230,13 +230,6 @@ export function HeroSection() {
                 transition={{ delay: 0.5 }}
                 className="flex flex-wrap gap-3 mb-8"
               >
-                <a
-                  href="/resume.pdf"
-                  download
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a56ff] hover:bg-[#1446e0] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-[#1a56ff]/30"
-                >
-                  <Download className="w-4 h-4" /> Download Resume
-                </a>
                 <button
                   onClick={() =>
                     document
