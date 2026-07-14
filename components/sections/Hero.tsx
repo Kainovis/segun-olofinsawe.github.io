@@ -332,7 +332,7 @@ export function HeroSection() {
               {/* Floating badge */}
               <div className="absolute -bottom-4 -left-5 px-4 py-2.5 rounded-xl bg-[#0a1628]/90 backdrop-blur-sm border border-[#1a56ff]/30 shadow-xl">
                 <p className="text-[11px] text-slate-400 font-medium">Senior Engineer</p>
-                <p className="text-sm text-white font-bold">10+ yrs experience</p>
+                <p className="text-sm text-white font-bold">6+ yrs experience</p>
               </div>
               {/* Top-right dots accent */}
               <div className="absolute -top-3 -right-3 grid grid-cols-3 gap-1.5">
